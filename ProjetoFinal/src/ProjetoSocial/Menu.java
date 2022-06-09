@@ -61,6 +61,11 @@ public class Menu extends JFrame {
 		contentPane.add(btnAgenda);
 		
 		JButton btnProjeto = new JButton("Cadastrar Projeto");
+		btnProjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnProjeto.setForeground(Color.BLACK);
 		btnProjeto.setBackground(Color.GRAY);
 		btnProjeto.setVerticalAlignment(SwingConstants.TOP);
