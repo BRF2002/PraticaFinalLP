@@ -61,9 +61,9 @@ public class CadastroProjeto extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		textTitulo = new JTextField();
-		textTitulo.setFont(new Font("Arial", Font.BOLD, 13));
+		textTitulo.setFont(new Font("Arial", Font.PLAIN, 13));
 		textTitulo.setForeground(Color.BLACK);
-		textTitulo.setBackground(Color.GRAY);
+		textTitulo.setBackground(Color.LIGHT_GRAY);
 		textTitulo.setBounds(216, 52, 197, 20);
 		contentPane.add(textTitulo);
 		textTitulo.setColumns(10);
@@ -76,9 +76,9 @@ public class CadastroProjeto extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		textObjetivo = new JTextField();
-		textObjetivo.setFont(new Font("Arial", Font.BOLD, 13));
+		textObjetivo.setFont(new Font("Arial", Font.PLAIN, 13));
 		textObjetivo.setForeground(Color.BLACK);
-		textObjetivo.setBackground(Color.GRAY);
+		textObjetivo.setBackground(Color.LIGHT_GRAY);
 		textObjetivo.setBounds(216, 83, 197, 20);
 		contentPane.add(textObjetivo);
 		textObjetivo.setColumns(10);
@@ -91,9 +91,9 @@ public class CadastroProjeto extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		textEndereco = new JTextField();
-		textEndereco.setFont(new Font("Arial", Font.BOLD, 13));
+		textEndereco.setFont(new Font("Arial", Font.PLAIN, 13));
 		textEndereco.setForeground(Color.BLACK);
-		textEndereco.setBackground(Color.GRAY);
+		textEndereco.setBackground(Color.LIGHT_GRAY);
 		textEndereco.setBounds(216, 117, 197, 20);
 		contentPane.add(textEndereco);
 		textEndereco.setColumns(10);
@@ -106,15 +106,15 @@ public class CadastroProjeto extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		textData = new JTextField();
-		textData.setFont(new Font("Arial", Font.BOLD, 13));
+		textData.setFont(new Font("Arial", Font.PLAIN, 13));
 		textData.setForeground(Color.BLACK);
-		textData.setBackground(Color.GRAY);
+		textData.setBackground(Color.LIGHT_GRAY);
 		textData.setBounds(216, 148, 197, 20);
 		contentPane.add(textData);
 		textData.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("PROJETO SOCIAL");
-		lblNewLabel_4.setFont(new Font("Impact", Font.PLAIN, 14));
+		lblNewLabel_4.setFont(new Font("Impact", Font.PLAIN, 15));
 		lblNewLabel_4.setBounds(163, 11, 138, 14);
 		contentPane.add(lblNewLabel_4);
 		
@@ -126,9 +126,9 @@ public class CadastroProjeto extends JFrame {
 		contentPane.add(lblNewLabel_5);
 		
 		textStatus = new JTextField();
-		textStatus.setFont(new Font("Arial", Font.BOLD, 13));
+		textStatus.setFont(new Font("Arial", Font.PLAIN, 13));
 		textStatus.setForeground(Color.BLACK);
-		textStatus.setBackground(Color.GRAY);
+		textStatus.setBackground(Color.LIGHT_GRAY);
 		textStatus.setBounds(216, 185, 197, 20);
 		contentPane.add(textStatus);
 		textStatus.setColumns(10);
@@ -139,9 +139,21 @@ public class CadastroProjeto extends JFrame {
 			}
 		});
 		btnSalvar.setFont(new Font("Arial", Font.BOLD, 13));
-		btnSalvar.setBackground(Color.GRAY);
+		btnSalvar.setBackground(Color.LIGHT_GRAY);
 		btnSalvar.setForeground(Color.BLACK);
 		btnSalvar.setBounds(162, 227, 89, 23);
 		contentPane.add(btnSalvar);
+		
+		JButton btnVoltaProjeto = new JButton("Menu");
+		btnVoltaProjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Menu frame = new Menu();
+				frame.setVisible(true); 
+			}
+		});
+		btnVoltaProjeto.setFont(new Font("Arial", Font.BOLD, 11));
+		btnVoltaProjeto.setBackground(Color.LIGHT_GRAY);
+		btnVoltaProjeto.setBounds(10, 9, 67, 20);
+		contentPane.add(btnVoltaProjeto);
 	}
 }
