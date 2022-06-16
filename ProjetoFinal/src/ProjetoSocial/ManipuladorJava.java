@@ -31,6 +31,13 @@ public class ManipuladorJava {
         write.append(Arrays.toString(projetoSocial.toArray()));
         write.close();
     }
+    public static void WriterAgenda(String txtDataA, String txtHora, String txtDesc, String txtAcao) throws IOException {
+        write = new BufferedWriter(new FileWriter(nameFile + ".txt", true));
+        projetoSocial = new ArrayList<>();
+        projetoSocial.add("\n Data: " + txtDataA + " \nHora: " + txtHora + " \nDescrição: " + txtDesc + " \nAcao: " + txtAcao + "\n");
+        write.append(Arrays.toString(projetoSocial.toArray()));
+        write.close();
+    }
 
     public static void Reading(String namePath) throws IOException {
         String dir = namePath+ ".txt";

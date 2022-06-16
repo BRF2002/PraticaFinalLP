@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -22,10 +24,10 @@ import java.util.Arrays;
 public class CadastrarAgenda extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtDataA;
+	private JTextField txtHora;
+	private JTextField txtDesc;
+	private JTextField txtAcao;
 
 	/**
 	 * Launch the application.
@@ -75,34 +77,34 @@ public class CadastrarAgenda extends JFrame {
 		lblNewLabel_3.setBounds(132, 156, 77, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Status");
+		JLabel lblNewLabel_4 = new JLabel("A\u00E7\u00E3o");
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 13));
 		lblNewLabel_4.setBounds(132, 192, 46, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBackground(Color.LIGHT_GRAY);
-		textField.setBounds(297, 79, 95, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtDataA = new JTextField();
+		txtDataA.setBackground(Color.LIGHT_GRAY);
+		txtDataA.setBounds(297, 79, 95, 20);
+		contentPane.add(txtDataA);
+		txtDataA.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBackground(Color.LIGHT_GRAY);
-		textField_1.setColumns(10);
-		textField_1.setBounds(297, 114, 95, 20);
-		contentPane.add(textField_1);
+		txtHora = new JTextField();
+		txtHora.setBackground(Color.LIGHT_GRAY);
+		txtHora.setColumns(10);
+		txtHora.setBounds(297, 114, 95, 20);
+		contentPane.add(txtHora);
 		
-		textField_2 = new JTextField();
-		textField_2.setBackground(Color.LIGHT_GRAY);
-		textField_2.setColumns(10);
-		textField_2.setBounds(297, 150, 95, 20);
-		contentPane.add(textField_2);
+		txtDesc = new JTextField();
+		txtDesc.setBackground(Color.LIGHT_GRAY);
+		txtDesc.setColumns(10);
+		txtDesc.setBounds(297, 150, 95, 20);
+		contentPane.add(txtDesc);
 		
-		textField_3 = new JTextField();
-		textField_3.setBackground(Color.LIGHT_GRAY);
-		textField_3.setColumns(10);
-		textField_3.setBounds(297, 189, 95, 20);
-		contentPane.add(textField_3);
+		txtAcao = new JTextField();
+		txtAcao.setBackground(Color.LIGHT_GRAY);
+		txtAcao.setColumns(10);
+		txtAcao.setBounds(297, 189, 95, 20);
+		contentPane.add(txtAcao);
 		
 		JButton btnVoltaAgenda = new JButton("Menu");
 		btnVoltaAgenda.addActionListener(new ActionListener() {
@@ -117,6 +119,18 @@ public class CadastrarAgenda extends JFrame {
 		contentPane.add(btnVoltaAgenda);
 		
 		JButton btnSalvaAgenda = new JButton("SALVAR");
+		btnSalvaAgenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ManipuladorJava.WriterAgenda(txtDataA.getText(), txtObjetivo.getText(), txtEndereco.getText(), txtData.getText(), txtStatus.getText());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				JOptionPane.showMessageDialog(null, "Projeto Salvo \nClique em Menu para retornar à página inicial.");
+			}
+		});
 		btnSalvaAgenda.setBackground(Color.LIGHT_GRAY);
 		btnSalvaAgenda.setFont(new Font("Arial", Font.BOLD, 13));
 		btnSalvaAgenda.setBounds(212, 250, 107, 23);
