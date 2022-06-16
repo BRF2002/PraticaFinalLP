@@ -1,28 +1,35 @@
 package ProjetoSocial;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.UIManager;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Window.Type;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JToggleButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class CadastroProjeto extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textTitulo;
-	private JTextField textObjetivo;
-	private JTextField textEndereco;
-	private JTextField textData;
-	private JTextField textStatus;
+	private JTextField txtTitulo;
+	private JTextField txtObjetivo;
+	private JTextField txtEndereco;
+	private JTextField txtData;
+	private JTextField txtStatus;
 
 	/**
 	 * Launch the application.
@@ -46,7 +53,7 @@ public class CadastroProjeto extends JFrame {
 	public CadastroProjeto() {
 		setForeground(Color.DARK_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 540, 382);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,91 +64,103 @@ public class CadastroProjeto extends JFrame {
 		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 13));
 		lblNewLabel.setBackground(Color.GRAY);
-		lblNewLabel.setBounds(61, 52, 89, 14);
+		lblNewLabel.setBounds(61, 55, 89, 14);
 		contentPane.add(lblNewLabel);
 		
-		textTitulo = new JTextField();
-		textTitulo.setFont(new Font("Arial", Font.PLAIN, 13));
-		textTitulo.setForeground(Color.BLACK);
-		textTitulo.setBackground(Color.LIGHT_GRAY);
-		textTitulo.setBounds(216, 52, 197, 20);
-		contentPane.add(textTitulo);
-		textTitulo.setColumns(10);
+		txtTitulo = new JTextField();
+		txtTitulo.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtTitulo.setForeground(Color.BLACK);
+		txtTitulo.setBackground(Color.LIGHT_GRAY);
+		txtTitulo.setBounds(270, 52, 197, 20);
+		contentPane.add(txtTitulo);
+		txtTitulo.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Objetivo");
 		lblNewLabel_1.setBackground(Color.GRAY);
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(61, 86, 89, 14);
+		lblNewLabel_1.setBounds(61, 100, 89, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		textObjetivo = new JTextField();
-		textObjetivo.setFont(new Font("Arial", Font.PLAIN, 13));
-		textObjetivo.setForeground(Color.BLACK);
-		textObjetivo.setBackground(Color.LIGHT_GRAY);
-		textObjetivo.setBounds(216, 83, 197, 20);
-		contentPane.add(textObjetivo);
-		textObjetivo.setColumns(10);
+		txtObjetivo = new JTextField();
+		txtObjetivo.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtObjetivo.setForeground(Color.BLACK);
+		txtObjetivo.setBackground(Color.LIGHT_GRAY);
+		txtObjetivo.setBounds(270, 97, 197, 39);
+		contentPane.add(txtObjetivo);
+		txtObjetivo.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Endereco Completo");
 		lblNewLabel_2.setBackground(Color.GRAY);
 		lblNewLabel_2.setForeground(Color.BLACK);
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_2.setBounds(60, 120, 146, 14);
+		lblNewLabel_2.setBounds(61, 150, 146, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		textEndereco = new JTextField();
-		textEndereco.setFont(new Font("Arial", Font.PLAIN, 13));
-		textEndereco.setForeground(Color.BLACK);
-		textEndereco.setBackground(Color.LIGHT_GRAY);
-		textEndereco.setBounds(216, 117, 197, 20);
-		contentPane.add(textEndereco);
-		textEndereco.setColumns(10);
+		txtEndereco = new JTextField();
+		txtEndereco.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtEndereco.setForeground(Color.BLACK);
+		txtEndereco.setBackground(Color.LIGHT_GRAY);
+		txtEndereco.setBounds(270, 147, 197, 20);
+		contentPane.add(txtEndereco);
+		txtEndereco.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Data de Inicio");
 		lblNewLabel_3.setBackground(Color.GRAY);
 		lblNewLabel_3.setForeground(Color.BLACK);
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_3.setBounds(61, 154, 96, 14);
+		lblNewLabel_3.setBounds(61, 192, 96, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		textData = new JTextField();
-		textData.setFont(new Font("Arial", Font.PLAIN, 13));
-		textData.setForeground(Color.BLACK);
-		textData.setBackground(Color.LIGHT_GRAY);
-		textData.setBounds(216, 148, 197, 20);
-		contentPane.add(textData);
-		textData.setColumns(10);
+		txtData = new JTextField();
+		txtData.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtData.setForeground(Color.BLACK);
+		txtData.setBackground(Color.LIGHT_GRAY);
+		txtData.setBounds(270, 189, 197, 20);
+		contentPane.add(txtData);
+		txtData.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("PROJETO SOCIAL");
 		lblNewLabel_4.setFont(new Font("Impact", Font.PLAIN, 15));
-		lblNewLabel_4.setBounds(163, 11, 138, 14);
+		lblNewLabel_4.setBounds(184, 10, 138, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Status");
 		lblNewLabel_5.setBackground(Color.GRAY);
 		lblNewLabel_5.setForeground(Color.BLACK);
 		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_5.setBounds(61, 188, 46, 14);
+		lblNewLabel_5.setBounds(61, 235, 46, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		textStatus = new JTextField();
-		textStatus.setFont(new Font("Arial", Font.PLAIN, 13));
-		textStatus.setForeground(Color.BLACK);
-		textStatus.setBackground(Color.LIGHT_GRAY);
-		textStatus.setBounds(216, 185, 197, 20);
-		contentPane.add(textStatus);
-		textStatus.setColumns(10);
+		txtStatus = new JTextField();
+		txtStatus.setFont(new Font("Arial", Font.PLAIN, 13));
+		txtStatus.setForeground(Color.BLACK);
+		txtStatus.setBackground(Color.LIGHT_GRAY);
+		txtStatus.setBounds(270, 232, 197, 20);
+		contentPane.add(txtStatus);
+		txtStatus.setColumns(10);
 		
 		JButton btnSalvar = new JButton("SALVAR");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnSalvar.addActionListener(new ActionListener()  {
+			public void actionPerformed(ActionEvent e)  {
+				 
+				//(String , String txtObjetivo, String txtEndereco, String txtData, String txtStatus)
+				try {
+					ManipuladorJava.Writer(txtTitulo.getText(), txtObjetivo.getText(), txtEndereco.getText(), txtData.getText(), txtStatus.getText());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				JOptionPane.showMessageDialog(null, "Projeto Salvo \nClique em Menu para retornar à página inicial.");
+				
+				
 			}
 		});
 		btnSalvar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnSalvar.setBackground(Color.LIGHT_GRAY);
 		btnSalvar.setForeground(Color.BLACK);
-		btnSalvar.setBounds(162, 227, 89, 23);
+		btnSalvar.setBounds(233, 290, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		JButton btnVoltaProjeto = new JButton("Menu");
