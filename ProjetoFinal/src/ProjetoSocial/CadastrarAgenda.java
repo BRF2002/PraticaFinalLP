@@ -1,6 +1,7 @@
 package ProjetoSocial;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,19 +9,25 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class CadastrarAgenda extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtDataA;
+	private JTextField txtHora;
+	private JTextField txtDesc;
+	private JTextField txtAcao;
 
 	/**
 	 * Launch the application.
@@ -43,7 +50,7 @@ public class CadastrarAgenda extends JFrame {
 	 */
 	public CadastrarAgenda() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 368);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -52,52 +59,52 @@ public class CadastrarAgenda extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Projeto Social");
 		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 15));
-		lblNewLabel.setBounds(163, 11, 95, 14);
+		lblNewLabel.setBounds(190, 10, 95, 15);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Data");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(83, 58, 46, 14);
+		lblNewLabel_1.setBounds(86, 58, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Hora");
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_2.setBounds(83, 94, 46, 14);
+		lblNewLabel_2.setBounds(86, 111, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Descri\u00E7\u00E3o");
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_3.setBounds(83, 133, 77, 14);
+		lblNewLabel_3.setBounds(86, 155, 77, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Status");
+		JLabel lblNewLabel_4 = new JLabel("A\u00E7\u00E3o");
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNewLabel_4.setBounds(83, 169, 46, 14);
+		lblNewLabel_4.setBounds(86, 206, 46, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBackground(Color.LIGHT_GRAY);
-		textField.setBounds(248, 56, 95, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtDataA = new JTextField();
+		txtDataA.setBackground(Color.LIGHT_GRAY);
+		txtDataA.setBounds(279, 55, 164, 20);
+		contentPane.add(txtDataA);
+		txtDataA.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBackground(Color.LIGHT_GRAY);
-		textField_1.setColumns(10);
-		textField_1.setBounds(248, 91, 95, 20);
-		contentPane.add(textField_1);
+		txtHora = new JTextField();
+		txtHora.setBackground(Color.LIGHT_GRAY);
+		txtHora.setColumns(10);
+		txtHora.setBounds(279, 96, 164, 20);
+		contentPane.add(txtHora);
 		
-		textField_2 = new JTextField();
-		textField_2.setBackground(Color.LIGHT_GRAY);
-		textField_2.setColumns(10);
-		textField_2.setBounds(248, 127, 95, 20);
-		contentPane.add(textField_2);
+		txtDesc = new JTextField();
+		txtDesc.setBackground(Color.LIGHT_GRAY);
+		txtDesc.setColumns(10);
+		txtDesc.setBounds(279, 141, 164, 42);
+		contentPane.add(txtDesc);
 		
-		textField_3 = new JTextField();
-		textField_3.setBackground(Color.LIGHT_GRAY);
-		textField_3.setColumns(10);
-		textField_3.setBounds(248, 166, 95, 20);
-		contentPane.add(textField_3);
+		txtAcao = new JTextField();
+		txtAcao.setBackground(Color.LIGHT_GRAY);
+		txtAcao.setColumns(10);
+		txtAcao.setBounds(279, 203, 164, 20);
+		contentPane.add(txtAcao);
 		
 		JButton btnVoltaAgenda = new JButton("Menu");
 		btnVoltaAgenda.addActionListener(new ActionListener() {
@@ -112,9 +119,21 @@ public class CadastrarAgenda extends JFrame {
 		contentPane.add(btnVoltaAgenda);
 		
 		JButton btnSalvaAgenda = new JButton("SALVAR");
+		btnSalvaAgenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ManipuladorJava.WriterAgenda(txtDataA.getText(), txtHora.getText(), txtDesc.getText(), txtAcao.getText());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				JOptionPane.showMessageDialog(null, "Projeto Salvo \nClique em Menu para retornar � p�gina inicial.");
+			}
+		});
 		btnSalvaAgenda.setBackground(Color.LIGHT_GRAY);
 		btnSalvaAgenda.setFont(new Font("Arial", Font.BOLD, 13));
-		btnSalvaAgenda.setBounds(163, 227, 107, 23);
+		btnSalvaAgenda.setBounds(212, 274, 107, 23);
 		contentPane.add(btnSalvaAgenda);
 	}
 }

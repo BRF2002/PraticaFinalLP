@@ -3,6 +3,10 @@ package ProjetoSocial;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +26,7 @@ import javax.swing.*;
 public class Menu extends JFrame {
 
 	private JPanel contentPane;
+	public String nameFile;
 	//private JFrame frame;
 
 	/**
@@ -46,13 +51,15 @@ public class Menu extends JFrame {
 	public Menu() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 525, 375);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.GRAY);
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
 		
 		JButton btnAgenda = new JButton("Cadastrar Agenda");
 		Image img = new ImageIcon(this.getClass().getResource("/schedule1.png")).getImage();
@@ -67,7 +74,7 @@ public class Menu extends JFrame {
 				frame.setVisible(true); 
 			}
 		});
-		btnAgenda.setBounds(111, 104, 210, 40);
+		btnAgenda.setBounds(149, 158, 210, 40);
 		contentPane.add(btnAgenda);
 		
 		JButton btnProjeto = new JButton("Cadastrar Projeto");
@@ -83,7 +90,7 @@ public class Menu extends JFrame {
 		btnProjeto.setForeground(Color.BLACK);
 		btnProjeto.setBackground(Color.LIGHT_GRAY);
 		btnProjeto.setFont(new Font("Arial", Font.BOLD, 13));
-		btnProjeto.setBounds(111, 53, 210, 40);
+		btnProjeto.setBounds(149, 107, 210, 40);
 		contentPane.add(btnProjeto);
 		
 		JButton btnArquivo = new JButton("Carregar Arquivo");
@@ -94,10 +101,17 @@ public class Menu extends JFrame {
 		btnArquivo.setFont(new Font("Arial", Font.BOLD, 13));
 		btnArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				nameFile = JOptionPane.showInputDialog(null, "Insira o nome do arquivo");
+				try {
+					ManipuladorJava.Reading(nameFile);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "Arquivo Criado com Sucesso");
 			}
 		});
-		btnArquivo.setBounds(111, 160, 210, 40);
+		btnArquivo.setBounds(149, 214, 210, 40);
 		contentPane.add(btnArquivo);
 		
 		JButton btnSair = new JButton("Sair");
@@ -112,12 +126,32 @@ public class Menu extends JFrame {
 		btnSair.setForeground(Color.BLACK);
 		btnSair.setBackground(Color.LIGHT_GRAY);
 		btnSair.setFont(new Font("Arial", Font.BOLD, 13));
-		btnSair.setBounds(159, 216, 117, 34);
+		btnSair.setBounds(197, 270, 117, 34);
 		contentPane.add(btnSair);
 		
 		JLabel lblNewLabel = new JLabel("Projeto Social");
 		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 15));
-		lblNewLabel.setBounds(159, 11, 101, 14);
+		lblNewLabel.setBounds(210, 11, 101, 14);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnCriarArquivo = new JButton("Criar Arquivo");
+		Image img6 = new ImageIcon(this.getClass().getResource("/txt.png")).getImage();
+		btnCriarArquivo.setIcon(new ImageIcon(img6));
+		btnCriarArquivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nameFile = JOptionPane.showInputDialog(null, "Insira o nome do arquivo");
+				try {
+					ManipuladorJava.CriarArquivo(nameFile);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCriarArquivo.setForeground(Color.BLACK);
+		btnCriarArquivo.setFont(new Font("Arial", Font.BOLD, 13));
+		btnCriarArquivo.setBackground(Color.LIGHT_GRAY);
+		btnCriarArquivo.setBounds(149, 56, 210, 40);
+		contentPane.add(btnCriarArquivo);
 	}
 }
